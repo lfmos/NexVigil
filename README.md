@@ -91,6 +91,13 @@ Cada evento possui campos como:
 
 Senhas não são registradas na telemetria.
 
+Os arquivos de telemetria e alertas são gerados localmente durante a execução:
+
+- `logs/security_events.jsonl`
+- `alerts/security_alerts.jsonl`
+
+Esses arquivos representam dados de runtime e não são versionados no Git. Os diretórios permanecem no repositório por meio de arquivos `.gitkeep`.
+
 ### Detection Engine
 
 Engine desenvolvido em Python com:
@@ -228,19 +235,24 @@ O NexVigil possui pipeline de segurança no GitHub Actions.
 Quality gates utilizados:
 
 ```text
-Pytest
-   |
-Bandit SAST
-   |
-pip-audit
+Python 3.11 / 3.13
+        |
+    compileall
+        |
+      Pytest
+        |
+   Bandit SAST
+        |
+    pip-audit
 ```
 
 Validação atual:
 
-- testes automatizados: PASS;
+- 12 testes automatizados: PASS;
+- CI configurado para testar Python 3.11 e 3.13;
+- compilação dos módulos Python validada;
 - Bandit: 0 issues;
 - pip-audit: nenhuma vulnerabilidade conhecida nas dependências auditadas.
-
 ---
 
 ## Executando localmente

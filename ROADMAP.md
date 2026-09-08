@@ -20,6 +20,9 @@
 - [x] Restart safety
 - [x] Documentação de incidentes
 - [x] Pytest
+- [x] Testes da API FastAPI
+- [x] Validação de ausência de senhas na telemetria
+- [x] Tratamento seguro de eventos e timestamps inválidos
 - [x] Bandit SAST
 - [x] pip-audit
 - [x] GitHub Actions
