@@ -34,6 +34,12 @@ Os eventos são armazenados em JSON Lines.
 
 Senhas e tokens não são registrados.
 
+A telemetria é gravada em `logs/security_events.jsonl` durante a execução do laboratório.
+
+Alertas locais são gravados em `alerts/security_alerts.jsonl`.
+
+Ambos são artefatos de runtime e ficam fora do controle de versão.
+
 ## Detection Engine
 
 Responsável por:

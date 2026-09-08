@@ -15,7 +15,7 @@ Simulação Purple Team
     FastAPI Lab
         |
         v
-security_events.jsonl
+logs/security_events.jsonl
      |          |
      |          |
      v          v
@@ -73,6 +73,8 @@ Campos utilizados:
 - `service`.
 
 Credenciais não são armazenadas nos eventos.
+
+O arquivo `logs/security_events.jsonl` é gerado em runtime durante a execução do laboratório e não é versionado no Git.
 
 ## Regras Wazuh incluídas
 

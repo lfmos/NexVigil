@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from detection_engine.detector import parse_time
@@ -56,25 +56,40 @@ def prune_recent_events(
     if not events:
         return []
 
-    valid_events = [
-        event
-        for event in events
-        if event.get("timestamp")
-    ]
+    parsed_events: list[tuple[dict, datetime]] = []
 
-    if not valid_events:
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+
+        timestamp = event.get("timestamp")
+
+        if not isinstance(timestamp, str) or not timestamp:
+            continue
+
+        try:
+            parsed_timestamp = parse_time(timestamp)
+        except (ValueError, TypeError):
+            continue
+
+        parsed_events.append(
+            (event, parsed_timestamp)
+        )
+
+    if not parsed_events:
         return []
 
-    ordered = sorted(
-        valid_events,
-        key=lambda event: parse_time(event["timestamp"]),
+    parsed_events.sort(
+        key=lambda item: item[1]
     )
 
-    newest_time = parse_time(ordered[-1]["timestamp"])
-    cutoff = newest_time - timedelta(seconds=retention_seconds)
+    newest_time = parsed_events[-1][1]
+    cutoff = newest_time - timedelta(
+        seconds=retention_seconds
+    )
 
     return [
         event
-        for event in ordered
-        if parse_time(event["timestamp"]) >= cutoff
+        for event, parsed_timestamp in parsed_events
+        if parsed_timestamp >= cutoff
     ]

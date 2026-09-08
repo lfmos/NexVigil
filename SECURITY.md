@@ -40,6 +40,8 @@ Os eventos de segurança podem conter:
 
 Senhas não são gravadas nos logs.
 
+Os arquivos `logs/security_events.jsonl` e `alerts/security_alerts.jsonl` são artefatos de runtime e não são versionados no Git.
+
 ## Desenvolvimento seguro
 
 O projeto utiliza:
@@ -48,9 +50,9 @@ O projeto utiliza:
 - Bandit para SAST;
 - pip-audit para auditoria de dependências;
 - GitHub Actions para CI;
-- princípio de menor privilégio;
-- Secure by Default;
-- Defense in Depth.
+- credenciais locais fornecidas por variáveis de ambiente;
+- exclusão de segredos e artefatos de runtime do versionamento;
+- restrição das simulações a ambientes locais ou autorizados.
 
 ## Vulnerabilidades
 
