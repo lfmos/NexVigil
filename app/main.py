@@ -25,7 +25,7 @@ load_dotenv(ENV_FILE)
 
 app = FastAPI(
     title="NexVigil Lab API",
-    version="0.1.1",
+    version="1.0.0",
     description="Synthetic security telemetry generator for the NexVigil lab.",
 )
 
@@ -79,7 +79,7 @@ def health() -> dict:
     return {
         "status": "ok",
         "service": "nexvigil-lab-api",
-        "version": "0.1.1",
+        "version": "1.0.0",
     }
 
 
@@ -92,14 +92,14 @@ def login(payload: LoginRequest, request: Request) -> LoginResponse:
     valid = demo_users.get(payload.username) == payload.password
 
     event = {
-    "event_id": f"NV-EVT-{uuid4().hex}",
-    "timestamp": datetime.now(timezone.utc).isoformat(),
-    "event_type": "authentication",
-    "action": "login",
-    "result": "success" if valid else "failed",
-    "username": payload.username,
-    "source_ip": client_ip,
-    "service": "nexvigil-lab-api",
+        "event_id": f"NV-EVT-{uuid4().hex}",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "event_type": "authentication",
+        "action": "login",
+        "result": "success" if valid else "failed",
+        "username": payload.username,
+        "source_ip": client_ip,
+        "service": "nexvigil-lab-api",
     }
 
     # A senha nunca é incluída no evento.

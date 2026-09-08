@@ -101,10 +101,6 @@ def test_detects_success_after_failures():
         == "analyst@nexvigil.local"
     )
 
-    from detection_engine.main import compute_alert_id
-from detection_engine.state import prune_recent_events
-
-
 def test_alert_id_is_deterministic():
     alert = {
         "alert_type": "credential_bruteforce",
@@ -144,3 +140,30 @@ def test_prunes_old_correlation_events():
     )
 
     assert len(recent) == 2
+
+def test_prunes_invalid_events_without_crashing():
+    events = [
+        [],
+        "invalid-event",
+        {
+            "timestamp": "invalid-timestamp",
+        },
+        {
+            "timestamp": None,
+        },
+        {
+            "timestamp":
+            "2026-09-03T15:03:00+00:00",
+        },
+    ]
+
+    recent = prune_recent_events(
+        events,
+        retention_seconds=120,
+    )
+
+    assert len(recent) == 1
+    assert (
+        recent[0]["timestamp"]
+        == "2026-09-03T15:03:00+00:00"
+    )

@@ -112,7 +112,7 @@ def compute_alert_id(alert: dict) -> str:
 
 
 def main() -> None:
-    print("[NexVigil] Detection Engine v0.1.2")
+    print("[NexVigil] Detection Engine v1.0.0")
     print(f"[NexVigil] Watching: {EVENT_FILE}")
     print(f"[NexVigil] State: {STATE_FILE}")
 
