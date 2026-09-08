@@ -46,7 +46,7 @@ def test_health_endpoint():
     assert response.json() == {
         "status": "ok",
         "service": "nexvigil-lab-api",
-        "version": "1.0.0",
+        "version": "1.0.2",
     }
 
 

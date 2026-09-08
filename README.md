@@ -399,7 +399,7 @@ Veja também:
 
 ## Status
 
-**NexVigil v1.0.0**
+**NexVigil v1.0.2**
 
 Validado:
 

@@ -25,7 +25,7 @@ load_dotenv(ENV_FILE)
 
 app = FastAPI(
     title="NexVigil Lab API",
-    version="1.0.0",
+    version="1.0.2",
     description="Synthetic security telemetry generator for the NexVigil lab.",
 )
 
@@ -79,7 +79,7 @@ def health() -> dict:
     return {
         "status": "ok",
         "service": "nexvigil-lab-api",
-        "version": "1.0.0",
+        "version": "1.0.2",
     }
 
 

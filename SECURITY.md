@@ -1,6 +1,6 @@
 # Política de Segurança — NexVigil
 
-**Versão aplicável:** NexVigil v1.0.0
+**Versão aplicável:** NexVigil v1.0.2
 
 ## Escopo
 
